@@ -1,6 +1,4 @@
-﻿// Task 1. Cipher of Caesar.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-/*
+﻿/*
     В древности для шифрования сообщений использовался такой способ: все буквы в сообщении сдвигались на одно и то же число позиций в алфавите. 
     Число позиций могло быть как положительным, так и отрицательным и являлось параметром шифра. Если для сдвига на данное число позиций алфавита не хватает, 
     то он зацикливается (то есть буква с номером 27 — это снова буква «a», буква с номером 28 — это «b» и так далее).
@@ -65,9 +63,8 @@ string encrypt_caesar(string szText, int nKey) {
 }
 
 string decrypt_caesar(string szText, int nKey) {
-    return encrypt_caesar(szText, - nKey);
-    //реализовать на базе encrypt_caesar() в одну строку
-    // взять код и ключ со знаком минус
+    return encrypt_caesar(encrypt_caesar(szText, nKey), -nKey);
+    
 }
 
 int main()
@@ -87,8 +84,7 @@ int main()
     cout << "encrypt: "
         << encrypt_caesar(szText, nKey) << endl
         << "decrypt: " 
-        << decrypt_caesar(encrypt_caesar(szText, nKey), nKey);
+        << decrypt_caesar(szText, nKey);
 }
 
 
-//10/50 change
